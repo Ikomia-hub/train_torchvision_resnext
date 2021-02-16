@@ -11,7 +11,7 @@ Here are the steps:
 4. Open Ikomia Store and install ResNeXtTrain plugin
 5. Open images folder organized in *train* and *val* subfolders 
 6. Add ResNeXtTrain algorithm to the workflow
-7. Start the workflow and evaluate the prediction
+7. Start the workflow and evaluate the training thanks to [MLflow](https://www.mlflow.org/) integration
 
 That's it!
 
