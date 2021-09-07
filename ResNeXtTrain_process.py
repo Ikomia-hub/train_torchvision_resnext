@@ -1,19 +1,19 @@
 from ikomia import core, dataprocess
+from ikomia.core.task import TaskParam
 from ikomia.dnn import dnntrain
 import os
 import copy
-# Your imports below
-import ResNeXt
+from ResNeXtTrain import ResNeXt
 
 
 # --------------------
 # - Class to handle the process parameters
 # - Inherits core.CProtocolTaskParam from Ikomia API
 # --------------------
-class ResNeXtTrainParam(dnntrain.TrainParam):
+class ResNeXtTrainParam(TaskParam):
 
     def __init__(self):
-        dnntrain.TrainParam.__init__(self)
+        TaskParam.__init__(self)
         # Place default value initialization here
         self.cfg["model_name"] = 'resnext50'
         self.cfg["batch_size"] = 8
@@ -105,10 +105,10 @@ class ResNeXtTrainProcess(dnntrain.TrainProcess):
 # - Factory class to build process object
 # - Inherits dataprocess.CProcessFactory from Ikomia API
 # --------------------
-class ResNeXtTrainProcessFactory(dataprocess.CProcessFactory):
+class ResNeXtTrainProcessFactory(dataprocess.CTaskFactory):
 
     def __init__(self):
-        dataprocess.CProcessFactory.__init__(self)
+        dataprocess.CTaskFactory.__init__(self)
         # Set process information as string here
         self.info.name = "ResNeXt Train"
         self.info.shortDescription = "Training process for ResNeXt convolutional network."
