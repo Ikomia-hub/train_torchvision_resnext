@@ -1,6 +1,6 @@
 from ikomia import utils, core, dataprocess
 from ikomia.utils import pyqtutils, qtconversion
-from ResNeXtTrain.ResNeXtTrain_process import ResNeXtTrainParam
+from train_torchvision_resnext.train_torchvision_resnext_process import TrainResnextParam
 # PyQt GUI framework
 from PyQt5.QtWidgets import *
 
@@ -9,13 +9,13 @@ from PyQt5.QtWidgets import *
 # - Class which implements widget associated with the process
 # - Inherits core.CProtocolTaskWidget from Ikomia API
 # --------------------
-class ResNeXtTrainWidget(core.CWorkflowTaskWidget):
+class TrainResnextWidget(core.CWorkflowTaskWidget):
 
     def __init__(self, param, parent):
         core.CWorkflowTaskWidget.__init__(self, parent)
 
         if param is None:
-            self.parameters = ResNeXtTrainParam()
+            self.parameters = TrainResnextParam()
         else:
             self.parameters = param
 
@@ -91,13 +91,13 @@ class ResNeXtTrainWidget(core.CWorkflowTaskWidget):
 # - Factory class to build process widget object
 # - Inherits dataprocess.CWidgetFactory from Ikomia API
 # --------------------
-class ResNeXtTrainWidgetFactory(dataprocess.CWidgetFactory):
+class TrainResnextWidgetFactory(dataprocess.CWidgetFactory):
 
     def __init__(self):
         dataprocess.CWidgetFactory.__init__(self)
         # Set the name of the process -> it must be the same as the one declared in the process factory class
-        self.name = "ResNeXt Train"
+        self.name = "train_torchvision_resnext"
 
     def create(self, param):
         # Create widget object
-        return ResNeXtTrainWidget(param, None)
+        return TrainResnextWidget(param, None)

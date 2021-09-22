@@ -3,14 +3,14 @@ from ikomia.core.task import TaskParam
 from ikomia.dnn import dnntrain
 import os
 import copy
-from ResNeXtTrain import ResNeXt
+from train_torchvision_resnext import resnext
 
 
 # --------------------
 # - Class to handle the process parameters
 # - Inherits core.CProtocolTaskParam from Ikomia API
 # --------------------
-class ResNeXtTrainParam(TaskParam):
+class TrainResnextParam(TaskParam):
 
     def __init__(self):
         TaskParam.__init__(self)
@@ -49,7 +49,7 @@ class ResNeXtTrainParam(TaskParam):
 # - Class which implements the process
 # - Inherits core.CProtocolTask or derived from Ikomia API
 # --------------------
-class ResNeXtTrainProcess(dnntrain.TrainProcess):
+class TrainResnext(dnntrain.TrainProcess):
 
     def __init__(self, name, param):
         dnntrain.TrainProcess.__init__(self, name, param)
@@ -58,11 +58,11 @@ class ResNeXtTrainProcess(dnntrain.TrainProcess):
 
         # Create parameters class
         if param is None:
-            self.setParam(ResNeXtTrainParam())
+            self.setParam(TrainResnextParam())
         else:
             self.setParam(copy.deepcopy(param))
 
-        self.trainer = ResNeXt.Resnext(self.getParam())
+        self.trainer = resnext.Resnext(self.getParam())
         self.enableTensorboard(False)
 
     def getProgressSteps(self, eltCount=1):
@@ -105,12 +105,12 @@ class ResNeXtTrainProcess(dnntrain.TrainProcess):
 # - Factory class to build process object
 # - Inherits dataprocess.CProcessFactory from Ikomia API
 # --------------------
-class ResNeXtTrainProcessFactory(dataprocess.CTaskFactory):
+class TrainResnextFactory(dataprocess.CTaskFactory):
 
     def __init__(self):
         dataprocess.CTaskFactory.__init__(self)
         # Set process information as string here
-        self.info.name = "ResNeXt Train"
+        self.info.name = "train_torchvision_resnext"
         self.info.shortDescription = "Training process for ResNeXt convolutional network."
         self.info.description = "Training process for ResNeXt convolutional network. It requires a specific dataset " \
                                 "structure based on folder names. It follows the PyTorch torchvision convention. " \
@@ -129,4 +129,4 @@ class ResNeXtTrainProcessFactory(dataprocess.CTaskFactory):
 
     def create(self, param=None):
         # Create process object
-        return ResNeXtTrainProcess(self.info.name, param)
+        return TrainResnext(self.info.name, param)
