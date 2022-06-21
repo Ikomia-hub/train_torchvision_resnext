@@ -124,7 +124,7 @@ class TrainResnextFactory(dataprocess.CTaskFactory):
         self.info.license = "MIT License"
         self.info.repo = "https://github.com/Ikomia-dev"
         # relative path -> as displayed in Ikomia application process tree
-        self.info.path = "Plugins/Python/Train"
+        self.info.path = "Plugins/Python/Classification"
         self.info.iconPath = "icons/pytorch-logo.png"
         self.info.keywords = "ResNeXt,classification,train"
 
