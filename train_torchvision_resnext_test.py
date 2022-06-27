@@ -10,7 +10,7 @@ def test(t, data_dict):
     input_path = t.getInput(0)
     params = task.get_parameters(t)
     params["epochs"] = 1
-    params["batch_size"] = 2
+    params["batch_size"] = 1
     task.set_parameters(t, params)
     input_path.setPath(data_dict["datasets"]["classification"]["dataset_classification"])
     yield run_for_test(t)
