@@ -4,6 +4,7 @@ from ikomia.dnn import dnntrain
 import os
 import copy
 from train_torchvision_resnext import resnext
+from distutils.util import strtobool
 
 
 # --------------------
@@ -40,8 +41,8 @@ class TrainResnextParam(TaskParam):
         self.cfg["input_size"] = int(param_map["input_size"])
         self.cfg["use_pretrained"] = bool(param_map["use_pretrained"])
         self.cfg["feature_extract"] = bool(param_map["feature_extract"])
-        self.cfg["export_pth"] = bool(param_map["export_pth"])
-        self.cfg["export_onnx"] = bool(param_map["export_onnx"])
+        self.cfg["export_pth"] = strtobool(param_map["export_pth"])
+        self.cfg["export_onnx"] = strtobool(param_map["export_onnx"])
         self.cfg["output_folder"] = param_map["output_folder"]
 
 
@@ -119,7 +120,7 @@ class TrainResnextFactory(dataprocess.CTaskFactory):
                                 "One could train the full network from pre-trained weights or keep extracted features " \
                                 "and re-train only the classification layer."
         self.info.authors = "Ikomia"
-        self.info.version = "1.3.0"
+        self.info.version = "1.3.1"
         self.info.year = 2020
         self.info.license = "MIT License"
         self.info.repo = "https://github.com/Ikomia-dev"
