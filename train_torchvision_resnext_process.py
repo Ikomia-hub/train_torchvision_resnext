@@ -123,6 +123,8 @@ class TrainResnextFactory(dataprocess.CTaskFactory):
         self.info.path = "Plugins/Python/Classification"
         self.info.icon_path = "icons/pytorch-logo.png"
         self.info.keywords = "ResNeXt,classification,train"
+        self.info.algo_type = core.AlgoType.TRAIN
+        self.info.algo_tasks = "CLASSIFICATION"
 
     def create(self, param=None):
         # Create process object
